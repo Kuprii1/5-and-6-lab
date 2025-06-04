@@ -1,0 +1,32 @@
+type Subscriber {
+  id: ID!
+  name: String!
+  email: String!
+  account: String!
+  password: String!
+}
+
+type Message {
+  id: ID!
+  subject: String!
+  content: String!
+  sentAt: String!
+  subscribers: [Subscriber]
+}
+
+type Query {
+  getSubscribers: [Subscriber]
+  getSubscriber(id: ID!): Subscriber
+  getMessages: [Message]
+  getMessage(id: ID!): Message
+}
+
+type Mutation {
+  addSubscriber(name: String!, email: String!, account: String!, password: String!): Subscriber
+  updateSubscriber(id: ID!, name: String, email: String, account: String, password: String): Subscriber
+  deleteSubscriber(id: ID!): String
+
+  addMessage(subject: String!, content: String!, sentAt: String!, subscriberIds: [ID!]): Message
+  updateMessage(id: ID!, subject: String, content: String, sentAt: String, subscriberIds: [ID!]): Message
+  deleteMessage(id: ID!): String
+}
